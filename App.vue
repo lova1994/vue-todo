@@ -10,7 +10,7 @@
         v-on:click="todo.isCompleted = !todo.isCompleted"
         :class="{ strikeThrough: todo.isCompleted }"
       >{{todo.item}}
-      <button class="nes-btn is-error padding"   @click="removeTodo(todo.id)">X</button>
+      <button class="btn"   @click="removeTodo(todo.id)">X</button>
       </li>
     </ul>
   </div>
@@ -43,7 +43,6 @@ export default {
 
     removeTodo(id){
       this.todos = this.todos.filter(todo => todo.id !== id)
-
     }
   }
 };
@@ -113,7 +112,7 @@ li {
   font-size: 1.2rem;
 }
 
-.nes-btn {
+.btn {
 
   border: none;
   color: #ffa2d0;
@@ -122,7 +121,7 @@ li {
 }
 
 
-.nes-btn:hover {
+.btn:hover {
   cursor:pointer;
 }
 </style>
