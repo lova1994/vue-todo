@@ -2,7 +2,8 @@
 <div class="wrapper">
   <div id="app">
     <h1>{{title}}</h1>
-    <input type="text" placeholder="Add todo..." v-on:keyup.enter="addTodo" />
+      <input type="text" v-model="text" placeholder="Add todo..." v-on:keyup.enter="addTodo()" />
+    <Search />
     <ul>
       <li
         v-for="(todo, index) in todos"
@@ -17,14 +18,23 @@
   </div>
 </template>
 <script>
+
+import Search from './components/Search.vue';
+
+
 export default {
+ name: 'App',
+  components: {
+    Search
+  },
+
   data: () => ({
     title: "Lovas Todos",
     todos: [
-      { item: "Drink coffee", isCompleted: false, id: Date.now()},
-      { item: "Code", isCompleted: false, id: Date.now() },
-      { item: "Cry", isCompleted: false, id: Date.now() },
-      { item: "Repeat", isCompleted: false, id: Date.now() }
+      { item: "Drink coffee", isCompleted: false, id: 1},
+      { item: "Code", isCompleted: false, id: 2 },
+      { item: "Cry", isCompleted: false, id: 3 },
+      { item: "Repeat", isCompleted: false, id: 4 }
     ]
   }),
 
@@ -35,10 +45,10 @@ export default {
       this.isDone = !this.isDone;
     },
 
-    addTodo(event) {
-      const item = event.target.value;
+    addTodo() {
+      const item = this.text;
       this.todos.push({ item, isCompleted: false, id: Date.now() });
-      event.target.value = "";
+      this.text = "";
     },
 
     removeTodo(id){
