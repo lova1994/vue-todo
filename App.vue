@@ -2,30 +2,27 @@
 <div class="wrapper">
   <div id="app">
     <h1>{{title}}</h1>
-      <input type="text" v-model="text" placeholder="Add todo..." v-on:keyup.enter="addTodo()" />
-    <Search />
-    <ul>
-      <li
-        v-for="(todo, index) in todos"
-        v-bind:key="index"
-        v-on:click="todo.isCompleted = !todo.isCompleted"
-        :class="{ strikeThrough: todo.isCompleted }"
-      >{{todo.item}}
-      <button class="btn"   @click="removeTodo(todo.id)">X</button>
-      </li>
-    </ul>
+
+
+      <input type="text" v-model="text" placeholder="Add todo..." 
+      v-on:keyup.enter="addTodo()" />
+ 
+<Todos v-bind:todos="todos"
+v-on:del-todo="removeTodo"
+
+/>
   </div>
   </div>
 </template>
 <script>
 
-import Search from './components/Search.vue';
 
+import Todos from './components/Todos'
 
 export default {
  name: 'App',
   components: {
-    Search
+    Todos
   },
 
   data: () => ({
