@@ -1,28 +1,26 @@
 <template>
 <div class="wrapper">
   <div id="app">
-    <h1>{{title}}</h1>
-
-
+    <Header title="Lovas Todos" />
       <input type="text" v-model="text" placeholder="Add todo..." 
       v-on:keyup.enter="addTodo()" />
- 
 <Todos v-bind:todos="todos"
 v-on:del-todo="removeTodo"
-
 />
   </div>
   </div>
 </template>
 <script>
 
-
 import Todos from './components/Todos'
+import Header from './components/Header'
+
 
 export default {
  name: 'App',
   components: {
-    Todos
+    Todos,
+    Header
   },
 
   data: () => ({
@@ -36,6 +34,8 @@ export default {
   }),
 
   computed: {},
+
+  props: ["title"],
 
   methods: {
     isDone() {
